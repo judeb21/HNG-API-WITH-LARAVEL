@@ -33,30 +33,25 @@ services:
     restart: unless-stopped
     tty: true
     ports:
-      - "80:80"
-      - "443:443"
+      - "8080:80"
     volumes:
       - ./:/var/www
-      - ./nginx/conf.d/:/etc/nginx/conf/
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
     networks:
       - app-network
 
   #MySQL Service
-  db:
-    image: mysql:8.0.17
-    container_name: db
+  database:
+    image: mysql:8
+    container_name: database
     restart: unless-stopped
     tty: true
     ports:
       - "3308:3306"
     environment:
-      MYSQL_DATABASE: api
-      MYSQL_ROOT_PASSWORD: hngi7
+      MYSQL_ROOT_PASSWORD: 12345678
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
-    volumes:
-      - dbdata:/var/lib/mysql/
-      - ./mysql/my.cnf:/etc/mysql/my.cnf
     networks:
       - app-network
 
