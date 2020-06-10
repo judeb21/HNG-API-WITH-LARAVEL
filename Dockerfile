@@ -1,13 +1,13 @@
-FROM php:7.3-fpm
+FROM php:7.2-fpm
 
 # Copy composer.lock and composer.json
 COPY composer.lock composer.json /var/www/
+
 # Install dependencies
-RUN apt-get update && apt-get install mariadb-client
+RUN apt-get update && apt-get install mysql-client
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
-
 
 # Install extensions
 RUN docker-php-ext-install pdo pdo_mysql
