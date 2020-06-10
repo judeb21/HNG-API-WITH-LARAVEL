@@ -3,7 +3,7 @@ FROM php:7.3-fpm
 # Copy composer.lock and composer.json
 COPY composer.lock composer.json /var/www/
 # Install dependencies
-RUN apt-get update && apt-get install -y mariadb-client \
+RUN apt-get update && apt-get install mariadb-client
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
